@@ -4,7 +4,7 @@ const app = express();
 const _ = require("lodash");
 const mongoose = require("mongoose");
 mongoose.set('strictQuery', false);
-mongoose.connect("mongodb://127.0.0.1:27017/TodolistDB", { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect("mongodb+srv://Alexiess:gagoka45@alexiess.9vhaijd.mongodb.net/TodoList", { useNewUrlParser: true, useUnifiedTopology: true });
 // collections for items
 const itemSchema = new mongoose.Schema ({
     name: String
@@ -17,6 +17,8 @@ const listSchema = new mongoose.Schema({
     itmes: [itemSchema]
 });
 const List = mongoose.model("List",listSchema);
+
+
 
 
 const item1  = new Item({
@@ -77,6 +79,7 @@ if (listCustomName === day){
 }
 });
 
+
 app.post("/delete", function(req, res){
     var chck = req.body.checkbox1;
     var listedItems = req.body.listedname;
@@ -100,6 +103,7 @@ app.post("/delete", function(req, res){
       });   
     }
 });
+
 
 app.get("/:customList", function(req, res){
     var listName = _.capitalize(req.params.customList);
